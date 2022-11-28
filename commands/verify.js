@@ -6,7 +6,7 @@ module.exports = {
     .setName('verify')
     .setDescription('Verify on this Server'),
   async execute(interaction) {
-    //command will only work in guild (rgb-server) as it will only be registered in there
+    //command will only work in guild as it will only be registered in there
     const database = JSON.parse(fs.readFileSync('./data.json'))
     if (!database.verifiedUsers.includes(interaction.user.tag)) {
       await interaction.reply({
