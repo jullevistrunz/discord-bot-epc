@@ -38,7 +38,6 @@ for (const file of commandFiles) {
 }
 
 // register global commands into bot
-client.commands = new Collection()
 const globalCommandsPath = path.join(__dirname, 'globalCommands')
 const globalCommandFiles = fs
   .readdirSync(globalCommandsPath)
