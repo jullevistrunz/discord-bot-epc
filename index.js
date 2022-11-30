@@ -14,8 +14,8 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 // log and set activity on  launch
 client.once('ready', () => {
   console.log(`Bot tag: ${client.user.tag}`)
-  client.user.setActivity('verification requests', {
-    type: ActivityType.Watching,
+  client.user.setActivity('Created with Command Creator', {
+    type: ActivityType.Custom,
   })
 })
 
