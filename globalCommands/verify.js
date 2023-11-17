@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js')
-const fs = require('fs')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,12 +11,12 @@ module.exports = {
       )
       interaction.member.roles.add(role)
       await interaction.reply({
-        content: `:white_check_mark: Successfully verified ${interaction.user.tag}!`,
+        content: `:white_check_mark: Successfully verified <@${interaction.user.id}>!`,
         ephemeral: true,
       })
     } catch {
       await interaction.reply({
-        content: `:x: Couldn't verify ${interaction.user.tag}!`,
+        content: `:x: Couldn't verify <@${interaction.user.id}>\nPlease contact <@695670290587451515>!`,
         ephemeral: true,
       })
     }
