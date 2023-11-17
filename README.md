@@ -1,2 +1,2 @@
-# Verification
-This is the verification bot for my Discord server
+# EPC Assistant
+This is the verification and assistant bot for my Discord server
