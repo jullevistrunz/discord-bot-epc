@@ -27,10 +27,11 @@ module.exports = {
         )
         .setImage('https://i.imgur.com/v0V5e4P.png'),
     ]
-    interaction.reply({
+    interaction.reply({ ephemeral: true, content: 'Message sent' })
+    interaction.deleteReply()
+    interaction.channel.send({
       content: user ? `<@${user.id}>` : '',
       embeds: embeds,
-      ephemeral: false,
     })
   },
 }
