@@ -23,12 +23,14 @@ module.exports = {
         .setAuthor(author)
         .setTitle('Attach your RagePluginHook.log')
         .setDescription(
-          `${
-            user ? `<@${user.id}> ` : ''
-          }Please attach your RagePluginHook log - a file found in your GTA main directory; it is not found in your logs folder.`
+          `Please attach your RagePluginHook log - a file found in your GTA main directory; it is not found in your logs folder.`
         )
         .setImage('https://i.imgur.com/v0V5e4P.png'),
     ]
-    interaction.reply({ embeds: embeds, ephemeral: false })
+    interaction.reply({
+      content: user ? `<@${user.id}>` : '',
+      embeds: embeds,
+      ephemeral: false,
+    })
   },
 }
