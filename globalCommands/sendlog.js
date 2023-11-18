@@ -11,6 +11,11 @@ module.exports = {
         .setRequired(false)
     }),
   async execute(interaction) {
+    if (!interaction.channel) {
+      return interaction.reply({
+        content: `:x: Please do not use DMs!`,
+      })
+    }
     const user = interaction.options.getUser('user')
     const author = {
       name: interaction.user.displayName,

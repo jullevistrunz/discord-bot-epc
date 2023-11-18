@@ -5,6 +5,11 @@ module.exports = {
     .setName('verify')
     .setDescription('Verify on this Server'),
   async execute(interaction) {
+    if (!interaction.channel) {
+      return interaction.reply({
+        content: `:x: Please do not use DMs!`,
+      })
+    }
     try {
       const role = interaction.guild.roles.cache.find(
         (r) => r.name == 'Verified'
