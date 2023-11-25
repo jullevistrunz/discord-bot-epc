@@ -1,15 +1,11 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('verify')
-    .setDescription('Verify on this Server'),
+    .setDescription('Verify on this Server')
+    .setDMPermission(false),
   async execute(interaction) {
-    if (!interaction.channel) {
-      return interaction.reply({
-        content: `:x: Please do not use DMs!`,
-      })
-    }
     try {
       const role = interaction.guild.roles.cache.find(
         (r) => r.name == 'Verified'
