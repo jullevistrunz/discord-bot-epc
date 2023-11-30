@@ -1,4 +1,4 @@
 @echo off
-title [RGB] Verification
+title EPC Assistant
 node index.js
 PAUSE
