@@ -7,10 +7,10 @@ const fs = require('fs')
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('suggestions')
-    .setDescription('Display the list of suggestions')
+    .setName('suggestions-non-ephemeral')
+    .setDescription('Display the list of suggestions (non-ephemeral)')
     .setDMPermission(false)
-    .setDefaultMemberPermissions(PermissionFlagsBits.EmbedLinks),
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
     try {
       const suggestions = JSON.parse(fs.readFileSync('suggestions.json'))
@@ -34,7 +34,7 @@ module.exports = {
               text: 'Please keep in mind that these features are planned but there is no guarantee that they will be implemented.',
             }),
         ],
-        ephemeral: true,
+        ephemeral: false,
       })
     } catch {
       interaction.reply({
