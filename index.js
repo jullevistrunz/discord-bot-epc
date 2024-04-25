@@ -1,22 +1,15 @@
 const { token } = require('./config.json')
 const fs = require('fs')
 const path = require('path')
-const {
-  Client,
-  GatewayIntentBits,
-  ActivityType,
-  Collection,
-  Events,
-} = require('discord.js')
+const { Client, GatewayIntentBits, Collection, Events } = require('discord.js')
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] })
-
-// log and set activity on  launch
-client.once('ready', () => {
-  console.log(`Bot tag: ${client.user.tag}`)
-  client.user.setActivity('verification requests', {
-    type: ActivityType.Watching,
-  })
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+  ],
 })
 
 // register commands into bot
@@ -72,6 +65,21 @@ client.on(Events.InteractionCreate, async (interaction) => {
     })
   }
 })
+
+const eventsPath = path.join(__dirname, 'events')
+const eventFiles = fs
+  .readdirSync(eventsPath)
+  .filter((file) => file.endsWith('.js'))
+
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file)
+  const event = require(filePath)
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args))
+  } else {
+    client.on(event.name, (...args) => event.execute(...args))
+  }
+}
 
 // log in to discord
 client.login(token)

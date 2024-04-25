@@ -14,11 +14,13 @@ module.exports = {
   async execute(interaction) {
     try {
       const suggestions = JSON.parse(fs.readFileSync('suggestions.json'))
+      const codeBlockQuotes = '```'
 
-      let suggestionsString = ''
+      let suggestionsString = codeBlockQuotes
       for (const suggestion of suggestions) {
-        suggestionsString += `• ${suggestion}\n`
+        suggestionsString += `- ${suggestion}\n`
       }
+      suggestionsString += codeBlockQuotes
 
       interaction.reply({
         embeds: [
@@ -26,7 +28,7 @@ module.exports = {
             .setColor('ff0090')
             .setTitle('Suggestions')
             .setDescription(
-              suggestionsString
+              suggestions.length
                 ? suggestionsString
                 : '*No suggestion available*'
             )
