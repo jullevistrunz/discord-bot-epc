@@ -35,12 +35,15 @@ module.exports = {
 
       fs.writeFileSync('suggestions.json', JSON.stringify(suggestions))
 
+      const codeBlockQuotes = '```'
       interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setColor('ff0090')
             .setTitle('Suggestion removed from list')
-            .setDescription(suggestion),
+            .setDescription(
+              `${codeBlockQuotes}${suggestion}${codeBlockQuotes}`
+            ),
         ],
         ephemeral: true,
       })

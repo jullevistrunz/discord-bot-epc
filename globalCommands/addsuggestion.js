@@ -32,14 +32,16 @@ module.exports = {
 
       suggestions.push(suggestion)
 
+      
       fs.writeFileSync('suggestions.json', JSON.stringify(suggestions))
-
+      
+      const codeBlockQuotes = '```'
       interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setColor('ff0090')
             .setTitle('New suggestion added to list')
-            .setDescription(suggestion)
+            .setDescription(`${codeBlockQuotes}${suggestion}${codeBlockQuotes}`)
             .setFooter({
               text: 'Please keep in mind that this just means that the feature is planned. There is no guarantee that it will be implemented.',
             }),
